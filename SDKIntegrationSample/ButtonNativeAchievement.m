@@ -8,9 +8,10 @@
 
 #import "ButtonNativeAchievement.h"
 
+// This class is a simple way of showing how you can implement
+// custom views for claiming achievements. All this class
+// does is present a UIAlert with 2 options. Dismiss, or claim.
 @implementation ButtonNativeAchievement
-
-@synthesize alert;
 
 -(id)initWithAchievmentData:(SMAchievementData *)theData {
     self = [super initWithAchievmentData:theData];
@@ -18,12 +19,12 @@
 }
 
 - (void)present {
-    alert = [[UIAlertView alloc] initWithTitle:self.data.name
+    self.alert = [[UIAlertView alloc] initWithTitle:self.data.name
                                        message:self.data.message
                                       delegate:self
                              cancelButtonTitle:@"Dismiss"
                              otherButtonTitles:@"Claim",nil];
-    [alert show];
+    [self.alert show];
     
 }
 
@@ -34,8 +35,10 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     self.alert = nil;
     if(buttonIndex == 0) {
+        // Achievement will not be claimed.
         [super notifyDismissed:SMAchievementDismissTypeCanceled];
     } else if (buttonIndex == 1) {
+        // Achievement will be claimed and mPoints added to account.
         [super notifyDismissed:SMAchievementDismissTypeClaimed];
     }
 }

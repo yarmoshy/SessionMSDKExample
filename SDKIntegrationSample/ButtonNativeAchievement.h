@@ -10,10 +10,10 @@
 #import "SessionM.h"
 
 @interface ButtonNativeAchievement : SMAchievementActivity <UIAlertViewDelegate> {
-    UIAlertView *alert;
+
 }
 
-@property (nonatomic, retain) UIAlertView *alert;
+@property (nonatomic, strong) UIAlertView *alert;
 
 - (void)present;
 
