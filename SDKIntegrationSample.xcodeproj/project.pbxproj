@@ -23,6 +23,7 @@
 		E1CAABF419BA1A7D000FAB75 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1CAABF219BA1A7D000FAB75 /* InfoPlist.strings */; };
 		E1CAABF619BA1A7D000FAB75 /* SDKIntegrationSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CAABF519BA1A7D000FAB75 /* SDKIntegrationSampleTests.m */; };
 		E1CAAC0019BA1A86000FAB75 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E1CAABFF19BA1A86000FAB75 /* Podfile */; };
+		E1CAAC0C19BA1D91000FAB75 /* ButtonNativeAchievement.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CAAC0B19BA1D91000FAB75 /* ButtonNativeAchievement.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		E1CAABF319BA1A7D000FAB75 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1CAABF519BA1A7D000FAB75 /* SDKIntegrationSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDKIntegrationSampleTests.m; sourceTree = "<group>"; };
 		E1CAABFF19BA1A86000FAB75 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E1CAAC0A19BA1D91000FAB75 /* ButtonNativeAchievement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonNativeAchievement.h; sourceTree = "<group>"; };
+		E1CAAC0B19BA1D91000FAB75 /* ButtonNativeAchievement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonNativeAchievement.m; sourceTree = "<group>"; };
 		E31A2DD0BCD6498DBE873174 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +129,8 @@
 				E1CAABDC19BA1A7D000FAB75 /* Main.storyboard */,
 				E1CAABDF19BA1A7D000FAB75 /* SMViewController.h */,
 				E1CAABE019BA1A7D000FAB75 /* SMViewController.m */,
+				E1CAAC0A19BA1D91000FAB75 /* ButtonNativeAchievement.h */,
+				E1CAAC0B19BA1D91000FAB75 /* ButtonNativeAchievement.m */,
 				E1CAABE219BA1A7D000FAB75 /* Images.xcassets */,
 				E1CAABD119BA1A7D000FAB75 /* Supporting Files */,
 			);
@@ -295,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1CAAC0C19BA1D91000FAB75 /* ButtonNativeAchievement.m in Sources */,
 				E1CAABDB19BA1A7D000FAB75 /* SMAppDelegate.m in Sources */,
 				E1CAABE119BA1A7D000FAB75 /* SMViewController.m in Sources */,
 				E1CAABD719BA1A7D000FAB75 /* main.m in Sources */,
