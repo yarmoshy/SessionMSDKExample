@@ -17,13 +17,25 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T9O-Kq-1Zq">
-                                <rect key="frame" x="104" y="108" width="111" height="74"/>
+                                <rect key="frame" x="44" y="108" width="111" height="74"/>
                                 <color key="backgroundColor" red="1" green="0.1111871192" blue="0.1169436355" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Action">
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="redButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="jXU-F9-mq4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xg-Bz-U1W">
+                                <rect key="frame" x="165" y="108" width="111" height="74"/>
+                                <color key="backgroundColor" red="0.62186080553825973" green="0.0081587810614587308" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Action 2">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="purpleButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="V9C-Ef-eHr"/>
+                                    <action selector="redButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LBQ-df-tiQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDn-Jh-RFj">
@@ -37,9 +49,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWh-uI-4ZZ">
-                                <rect key="frame" x="119" y="278" width="81" height="55"/>
+                                <rect key="frame" x="80" y="278" width="160" height="55"/>
                                 <color key="backgroundColor" red="0.11946553510000001" green="0.1061599488" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Present">
+                                <state key="normal" title="Claim Achievements">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -63,6 +75,7 @@
                     <connections>
                         <outlet property="bigBlueButton" destination="TWh-uI-4ZZ" id="lQw-B7-be3"/>
                         <outlet property="bigGreenButton" destination="PDn-Jh-RFj" id="PcE-sf-Ry3"/>
+                        <outlet property="bigPurpleButton" destination="6xg-Bz-U1W" id="kEJ-gt-9hL"/>
                         <outlet property="bigRedButton" destination="T9O-Kq-1Zq" id="3Lu-gf-LBY"/>
                         <outlet property="memberSwitch" destination="VIF-64-vBi" id="us8-i6-b97"/>
                     </connections>

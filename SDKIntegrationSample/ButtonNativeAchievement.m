@@ -19,10 +19,10 @@
 
 - (void)present {
     alert = [[UIAlertView alloc] initWithTitle:self.data.name
-                                                    message:self.data.message
-                                                   delegate:self
-                                          cancelButtonTitle:@"Dismiss"
-                                          otherButtonTitles:@"Claim",nil];
+                                       message:self.data.message
+                                      delegate:self
+                             cancelButtonTitle:@"Dismiss"
+                             otherButtonTitles:@"Claim",nil];
     [alert show];
     
 }
@@ -39,14 +39,5 @@
         [super notifyDismissed:SMAchievementDismissTypeClaimed];
     }
 }
-
-//- (void)dismiss {
-//    [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
-//   [super notifyDismissed:SMAchievementDismissTypeCanceled];
-//}
-//
-//- (void)claim {
-//    [super notifyDismissed:SMAchievementDismissTypeClaimed];
-//}
 
 @end

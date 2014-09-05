@@ -13,15 +13,11 @@
     UIAlertView *alert;
 }
 
-
-//@property(nonatomic) BOOL isLastCallSuccessful;
 @property (nonatomic, retain) UIAlertView *alert;
 
 - (void)present;
-//- (void)claim;
-//- (void)dismiss;
 
--(id)initWithAchievmentData:(SMAchievementData *)theData;
+- (id)initWithAchievmentData:(SMAchievementData *)theData;
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger) buttonIndex;
 
 @end

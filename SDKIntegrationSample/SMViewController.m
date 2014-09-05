@@ -13,15 +13,13 @@
 
 @end
 
-#define YOUR_APP_ID @"401c5af1432b5c9a04f99d82a9821541ef88aa86"
-#define YOUR_TEST_EVENT @"shoot_bunny"
+// See https://developer.sessionm.com/get_started
+// to get your app ID as well as setup actions and achievements.
+#define YOUR_APP_ID @"7a6cf3f9d1a2016efd1bb5b3a1193a22785480cb"
+#define YOUR_TEST_ACTION @"red_button_tapped"
+#define YOUR_TEST_ACTION2 @"purple_button_tapped"
 
 @implementation SMViewController
-
-@synthesize bigRedButton;
-@synthesize bigGreenButton;
-@synthesize bigBlueButton;
-@synthesize memberSwitch;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,20 +30,19 @@
     // Init the SDK
     SMStart(YOUR_APP_ID);
     
-    // Create SMPortalButton
+    // Create SMPortalButton - By using the SMPortalButton class, the button's tap
+    // target is automagically setup for you. Just tap to open SessionM portal.
     SMPortalButton *portalButton=[SMPortalButton buttonWithType:UIButtonTypeSystem];
     [portalButton.button setTitle:@"Portal Button" forState:UIControlStateNormal];
-    portalButton.frame = CGRectMake(40, 40, 100, 30);
+    portalButton.frame = CGRectMake((self.view.frame.size.width-100)/2, 40, 100, 30);
     portalButton.layer.cornerRadius = 4;
     portalButton.layer.borderColor = [UIColor blackColor].CGColor;
     portalButton.layer.borderWidth = 1;
     [self.view addSubview:portalButton];
     
     // Manually Enable / Disable Portal Button
-    [bigGreenButton setTitle: @"Offline" forState: UIControlStateDisabled ];
-    [self updateButton: [SessionM sharedInstance].sessionState ];
-    
-    
+    [self.bigGreenButton setTitle: @"Offline" forState: UIControlStateDisabled];
+    [self updateButton: [SessionM sharedInstance].sessionState];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,60 +50,83 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+// Red and purple buttons complete your test Actions. Tap the number of times required
+// as specified in your test Achievement to trigger the achievement
 - (IBAction)redButtonAction:(id)sender{
-    SMAction(YOUR_TEST_EVENT);
+    SMAction(YOUR_TEST_ACTION);
 }
 
+- (IBAction)purpleButtonAction:(id)sender {
+    SMAction(YOUR_TEST_ACTION2);
+}
+
+// Green button is alternate way of launching the portal.
+// You could create a SMPortalButton, or just call the code
+// below to launch SessionM portal.
 - (IBAction)greenButtonAction:(id)sender{
     [[SessionM sharedInstance] presentActivity:SMActivityTypePortal];
 }
 
+// Blue button is example of how to claim an achievement via navite UI.
 - (IBAction)blueButtonAction:(id)sender{
-    
     SMAchievementData *achievementData =
     [SessionM sharedInstance].unclaimedAchievement;
-    
     if (achievementData) {
         ButtonNativeAchievement *activity = [[ButtonNativeAchievement alloc] initWithAchievmentData:achievementData];
         [activity present];
     }
-    
-    
     return;
 }
 
+// Switch shows example of how to toggle a user
+// opting in or out of SessionM rewards.
 - (IBAction)memberSwitchAction:(id)sender{
-    [SessionM sharedInstance].user.isOptedOut = !memberSwitch.on;
+    [SessionM sharedInstance].user.isOptedOut = !self.memberSwitch.on;
     
-    
-    [self updateButton: [SessionM sharedInstance].sessionState  ];
+    [self updateButton: [SessionM sharedInstance].sessionState];
 }
 
+// UI refresh method showing how you can change UI based
+// on SessionM state or if a user has opted in or out.
 - (void)updateButton:  (SessionMState) state  {
-    
+    // Setup UI based on opt-in status
     if ([SessionM sharedInstance].user.isOptedOut) {
-        [bigGreenButton setTitle: @"OptedOut" forState: UIControlStateNormal ];
+        [self.bigGreenButton setTitle:@"OptedOut" forState:UIControlStateNormal];
     } else {
-        [bigGreenButton setTitle: @"Portal" forState: UIControlStateNormal ];
+        [self.bigGreenButton setTitle:@"Portal" forState:UIControlStateNormal];
     }
-    
+    self.memberSwitch.on = ![SessionM sharedInstance].user.isOptedOut;
+
+    // Setup UI based on if SessionM state
     if (state == SessionMStateStartedOnline) {
-        bigGreenButton.enabled = YES;
+        self.bigGreenButton.enabled = YES;
     } else {
-        bigGreenButton.enabled = NO;
+        self.bigGreenButton.enabled = NO;
     }
 
-    // Update the switch
-    memberSwitch.on = ![SessionM sharedInstance].user.isOptedOut;
+    // Setup UI based on unclaimedAchievement data
+    SMAchievementData *unclaimedAchievementData =
+    [SessionM sharedInstance].unclaimedAchievement;
+    if (unclaimedAchievementData) {
+        self.bigBlueButton.enabled = YES;
+    } else {
+        self.bigBlueButton.enabled = NO;
+    }
 }
 
 
 #pragma mark SMSessionDelegate
 
+// Notifies about SessionM state transition.
 - (void)sessionM: (SessionM *)session didTransitionToState: (SessionMState)state {
-    [self updateButton: state ];
-    
+    [self updateButton:state];
+    NSLog(@"%u",state);
+}
+
+// Notifies that user info was updated. User info may be different from
+// time SessionM state goes online, therefore important to setup this delegate as well.
+- (void)sessionM:(SessionM *)sessionM didUpdateUser:(SMUser *)user {
+    [self updateButton:[SessionM sharedInstance].sessionState];
 }
 
 @end
