@@ -39,9 +39,9 @@
     portalButton.layer.borderWidth = 1;
     [self.view addSubview:portalButton];
     
-    // Manually Enable / Disable Portal Button
+    // Manually Enable / Disable Big Green Portal Button
     [self.bigGreenButton setTitle: @"Offline" forState: UIControlStateDisabled];
-    [self updateButton: [SessionM sharedInstance].sessionState];
+    [self updateButton:[SessionM sharedInstance].sessionState];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,11 +50,16 @@
 }
 
 // Red and purple buttons complete your test Actions. Tap the number of times required
-// as specified in your test Achievement to trigger the achievement
+// as specified by your test Achievement in SessionM dev portal to trigger the achievement
 - (IBAction)redButtonAction:(id)sender{
     SMAction(YOUR_TEST_ACTION);
 }
 
+// Purple button's action is tied to a Native Diplay achievement. This
+// means no SessionM UI will be displayed. Instead the
+// [SessionM sharedInstance].unclaimedAchievement property
+// will be populated with achievement data, allowing you to
+// create custom UI to display the achievement.
 - (IBAction)purpleButtonAction:(id)sender {
     SMAction(YOUR_TEST_ACTION2);
 }
@@ -73,7 +78,9 @@
     SMAchievementData *achievementData =
     [SessionM sharedInstance].unclaimedAchievement;
     if (achievementData) {
-        // Example of showing Native UI in place of SessionM achievement UI.
+        // Example of showing Native UI in place of SessionM achievement UI. Here
+        // we simple use a UIAlertView, but any custom view could be used, provided
+        // the notifyPresented and notifyDismissed methods are called.
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:achievementData.name
                                                         message:achievementData.message
                                                        delegate:self
@@ -89,12 +96,12 @@
 - (IBAction)memberSwitchAction:(id)sender{
     [SessionM sharedInstance].user.isOptedOut = !self.memberSwitch.on;
     
-    [self updateButton: [SessionM sharedInstance].sessionState];
+    [self updateButton:[SessionM sharedInstance].sessionState];
 }
 
 // UI refresh method showing how you can change UI based
 // on SessionM state or if a user has opted in or out.
-- (void)updateButton:  (SessionMState) state  {
+- (void)updateButton:(SessionMState)state  {
     // Setup UI based on opt-in status
     if ([SessionM sharedInstance].user.isOptedOut) {
         [self.bigGreenButton setTitle:@"OptedOut" forState:UIControlStateNormal];
@@ -116,9 +123,9 @@
     SMAchievementData *unclaimedAchievementData =
     [SessionM sharedInstance].unclaimedAchievement;
     if (unclaimedAchievementData) {
-        self.bigBlueButton.enabled = YES;
+        self.bigBlueButton.hidden = NO;
     } else {
-        self.bigBlueButton.enabled = NO;
+        self.bigBlueButton.hidden = YES;
     }
 }
 
