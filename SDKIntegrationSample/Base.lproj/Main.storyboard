@@ -35,7 +35,6 @@
                                 </state>
                                 <connections>
                                     <action selector="purpleButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="V9C-Ef-eHr"/>
-                                    <action selector="redButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LBQ-df-tiQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDn-Jh-RFj">

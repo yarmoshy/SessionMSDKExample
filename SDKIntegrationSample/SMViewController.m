@@ -7,7 +7,6 @@
 //
 
 #import "SMViewController.h"
-#import "ButtonNativeAchievement.h"
 
 @interface SMViewController ()
 
@@ -67,13 +66,20 @@
     [[SessionM sharedInstance] presentActivity:SMActivityTypePortal];
 }
 
-// Blue button is example of how to claim an achievement via navite UI.
+// Blue button is example of how to claim an achievement via navite UI. Achievement
+// in [SessionM sharedInstance].unclaimedAchievement will only be the most recent
+// unpresented and unclaimed achievement.
 - (IBAction)blueButtonAction:(id)sender{
     SMAchievementData *achievementData =
     [SessionM sharedInstance].unclaimedAchievement;
     if (achievementData) {
-        ButtonNativeAchievement *activity = [[ButtonNativeAchievement alloc] initWithAchievmentData:achievementData];
-        [activity present];
+        // Example of showing Native UI in place of SessionM achievement UI.
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:achievementData.name
+                                                        message:achievementData.message
+                                                       delegate:self
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles:@"Claim",nil];
+        [alert show];
     }
     return;
 }
@@ -104,7 +110,9 @@
         self.bigGreenButton.enabled = NO;
     }
 
-    // Setup UI based on unclaimedAchievement data
+    // Setup UI based on unclaimedAchievement data. Achievement
+    // must be setup as Native Display in dev portal for this
+    // function properly.
     SMAchievementData *unclaimedAchievementData =
     [SessionM sharedInstance].unclaimedAchievement;
     if (unclaimedAchievementData) {
@@ -120,12 +128,31 @@
 // Notifies about SessionM state transition.
 - (void)sessionM: (SessionM *)session didTransitionToState: (SessionMState)state {
     [self updateButton:state];
-    NSLog(@"%u",state);
 }
 
 // Notifies that user info was updated. User info may be different from
 // time SessionM state goes online, therefore important to setup this delegate as well.
 - (void)sessionM:(SessionM *)sessionM didUpdateUser:(SMUser *)user {
+    [self updateButton:[SessionM sharedInstance].sessionState];
+}
+
+#pragma mark UIAlertViewDelegate
+
+-(void)didPresentAlertView:(UIAlertView *)alertView {
+    SMAchievementActivity *activity = [[SMAchievementActivity alloc] initWithAchievmentData:    [SessionM sharedInstance].unclaimedAchievement];
+    [activity notifyPresented];
+}
+
+// Callback is used as part of the native achievement UI.
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    SMAchievementActivity *activity = [[SMAchievementActivity alloc] initWithAchievmentData:    [SessionM sharedInstance].unclaimedAchievement];
+    if(buttonIndex == 0) {
+        // Achievement will not be claimed.
+        [activity notifyDismissed:SMAchievementDismissTypeCanceled];
+    } else if (buttonIndex == 1) {
+        // Achievement will be claimed and mPoints added to account.
+        [activity notifyDismissed:SMAchievementDismissTypeClaimed];
+    }
     [self updateButton:[SessionM sharedInstance].sessionState];
 }
 

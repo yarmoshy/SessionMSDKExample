@@ -10,7 +10,7 @@
 #import "SessionM.h"
 #import "SMPortalButton.h"
 
-@interface SMViewController : UIViewController <SessionMDelegate> {
+@interface SMViewController : UIViewController <SessionMDelegate, UIAlertViewDelegate> {
 }
 
 @property (nonatomic, weak) IBOutlet UIButton *bigRedButton;
