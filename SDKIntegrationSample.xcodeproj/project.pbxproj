@@ -33,20 +33,6 @@
 			remoteGlobalIDString = E1CAABC619BA1A7D000FAB75;
 			remoteInfo = SDKIntegrationSample;
 		};
-		E1CAAC0619BA1AF3000FAB75 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E1CAAC0119BA1AF3000FAB75 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A98C617848FE45D3A961329D;
-			remoteInfo = Pods;
-		};
-		E1CAAC0819BA1AF3000FAB75 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E1CAAC0119BA1AF3000FAB75 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6DDABEE82F72490F80089A30;
-			remoteInfo = "Pods-SessionM";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +57,6 @@
 		E1CAABF319BA1A7D000FAB75 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1CAABF519BA1A7D000FAB75 /* SDKIntegrationSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDKIntegrationSampleTests.m; sourceTree = "<group>"; };
 		E1CAABFF19BA1A86000FAB75 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		E1CAAC0119BA1AF3000FAB75 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		E31A2DD0BCD6498DBE873174 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				E1CAABFF19BA1A86000FAB75 /* Podfile */,
-				E1CAAC0119BA1AF3000FAB75 /* Pods.xcodeproj */,
 				E1CAABD019BA1A7D000FAB75 /* SDKIntegrationSample */,
 				E1CAABEF19BA1A7D000FAB75 /* SDKIntegrationSampleTests */,
 				E1CAABC919BA1A7D000FAB75 /* Frameworks */,
@@ -177,15 +161,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E1CAAC0219BA1AF3000FAB75 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E1CAAC0719BA1AF3000FAB75 /* libPods.a */,
-				E1CAAC0919BA1AF3000FAB75 /* libPods-SessionM.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -252,12 +227,6 @@
 			mainGroup = E1CAABBE19BA1A7D000FAB75;
 			productRefGroup = E1CAABC819BA1A7D000FAB75 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = E1CAAC0219BA1AF3000FAB75 /* Products */;
-					ProjectRef = E1CAAC0119BA1AF3000FAB75 /* Pods.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				E1CAABC619BA1A7D000FAB75 /* SDKIntegrationSample */,
@@ -265,23 +234,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		E1CAAC0719BA1AF3000FAB75 /* libPods.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPods.a;
-			remoteRef = E1CAAC0619BA1AF3000FAB75 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E1CAAC0919BA1AF3000FAB75 /* libPods-SessionM.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libPods-SessionM.a";
-			remoteRef = E1CAAC0819BA1AF3000FAB75 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E1CAABC519BA1A7D000FAB75 /* Resources */ = {
