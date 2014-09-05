@@ -1,0 +1,10 @@
+PODS:
+  - SessionM (1.11.7)
+
+DEPENDENCIES:
+  - SessionM
+
+SPEC CHECKSUMS:
+  SessionM: e5ad539b2b7f149573907695851e917b0fff91e8
+
+COCOAPODS: 0.33.1

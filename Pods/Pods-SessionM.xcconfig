@@ -1,0 +1,2 @@
+PODS_SESSIONM_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/SessionM/**" "$(PODS_ROOT)/SessionM/SessionM_iOS_v1.11.7_Release/Sample Code/Button/SessionM-SDK" "$(PODS_ROOT)/SessionM/SessionM_iOS_v1.11.7_Release/SessionM-SDK"
+PODS_SESSIONM_OTHER_LDFLAGS = -lSessionM.1.11.7 -framework AVFoundation -framework AdSupport -framework CoreData -framework CoreGraphics -framework CoreMedia -framework EventKit -framework EventKitUI -framework MediaPlayer -framework Security -framework StoreKit -framework SystemConfiguration -framework UIKit
