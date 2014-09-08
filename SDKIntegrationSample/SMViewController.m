@@ -81,6 +81,7 @@
         // Example of showing Native UI in place of SessionM achievement UI. Here
         // we simple use a UIAlertView, but any custom view could be used, provided
         // the notifyPresented and notifyDismissed methods are called.
+        // See UIAlertViewDelegate methods at bottom.
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:achievementData.name
                                                         message:achievementData.message
                                                        delegate:self
@@ -147,12 +148,15 @@
 
 -(void)didPresentAlertView:(UIAlertView *)alertView {
     SMAchievementActivity *activity = [[SMAchievementActivity alloc] initWithAchievmentData:    [SessionM sharedInstance].unclaimedAchievement];
-    [activity notifyPresented];
+    [activity notifyPresented]; // Tells the SessionM SDK the achievement has been presented.
 }
 
 // Callback is used as part of the native achievement UI.
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     SMAchievementActivity *activity = [[SMAchievementActivity alloc] initWithAchievmentData:    [SessionM sharedInstance].unclaimedAchievement];
+    
+    // notifyDimissed tells the SessionM SDK the achiement has been dismissed,
+    // removing achievement data from [SessionM sharedInstance].unclaimedAchievement
     if(buttonIndex == 0) {
         // Achievement will not be claimed.
         [activity notifyDismissed:SMAchievementDismissTypeCanceled];
