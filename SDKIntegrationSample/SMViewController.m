@@ -7,6 +7,7 @@
 //
 
 #import "SMViewController.h"
+#import "SMCustomAchievementActivity.h"
 
 @interface SMViewController ()
 
@@ -26,6 +27,7 @@
     
     // Set the delegate so we get notified from the SDK
     [[SessionM sharedInstance] setDelegate:self];
+    
     // Init the SDK
     SMStart(YOUR_APP_ID);
     
@@ -77,19 +79,13 @@
 - (IBAction)blueButtonAction:(id)sender{
     SMAchievementData *achievementData =
     [SessionM sharedInstance].unclaimedAchievement;
-    if (achievementData) {
-        // Example of showing Native UI in place of SessionM achievement UI. Here
-        // we simple use a UIAlertView, but any custom view could be used, provided
-        // the notifyPresented and notifyDismissed methods are called.
-        // See UIAlertViewDelegate methods at bottom.
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:achievementData.name
-                                                        message:achievementData.message
-                                                       delegate:self
-                                              cancelButtonTitle:@"Dismiss"
-                                              otherButtonTitles:@"Claim",nil];
-        [alert show];
-    }
-    return;
+    
+    // Example of showing Native UI in place of SessionM achievement UI. Here
+    // we simple use a subclassed SMAchievementActivity which uses a UIAlertView,
+    // but any custom view could be used, provided the notifyPresented and
+    // notifyDismissed methods are called. See SMCustomAchievementActivity.m.
+    SMCustomAchievementActivity *customAchievementActivity = [[SMCustomAchievementActivity alloc] initWithAchievmentData:achievementData];
+    [customAchievementActivity present];
 }
 
 // Switch shows example of how to toggle a user
@@ -141,29 +137,6 @@
 // Notifies that user info was updated. User info may be different from
 // time SessionM state goes online, therefore important to setup this delegate as well.
 - (void)sessionM:(SessionM *)sessionM didUpdateUser:(SMUser *)user {
-    [self updateButton:[SessionM sharedInstance].sessionState];
-}
-
-#pragma mark UIAlertViewDelegate
-
--(void)didPresentAlertView:(UIAlertView *)alertView {
-    SMAchievementActivity *activity = [[SMAchievementActivity alloc] initWithAchievmentData:    [SessionM sharedInstance].unclaimedAchievement];
-    [activity notifyPresented]; // Tells the SessionM SDK the achievement has been presented.
-}
-
-// Callback is used as part of the native achievement UI.
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    SMAchievementActivity *activity = [[SMAchievementActivity alloc] initWithAchievmentData:    [SessionM sharedInstance].unclaimedAchievement];
-    
-    // notifyDimissed tells the SessionM SDK the achiement has been dismissed,
-    // removing achievement data from [SessionM sharedInstance].unclaimedAchievement
-    if(buttonIndex == 0) {
-        // Achievement will not be claimed.
-        [activity notifyDismissed:SMAchievementDismissTypeCanceled];
-    } else if (buttonIndex == 1) {
-        // Achievement will be claimed and mPoints added to account.
-        [activity notifyDismissed:SMAchievementDismissTypeClaimed];
-    }
     [self updateButton:[SessionM sharedInstance].sessionState];
 }
 

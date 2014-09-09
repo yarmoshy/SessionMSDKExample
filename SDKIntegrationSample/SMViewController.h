@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SessionM.h"
 #import "SMPortalButton.h"
+#import "SMActivityViewController.h"
 
 @interface SMViewController : UIViewController <SessionMDelegate, UIAlertViewDelegate> {
 }
