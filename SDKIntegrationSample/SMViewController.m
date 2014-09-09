@@ -146,4 +146,11 @@
     [self updateButton:[SessionM sharedInstance].sessionState];
 }
 
+-(void)sessionM:(SessionM *)sessionM didFailWithError:(NSError *)error {
+    if (error.code == SessionMServiceUnavailable) {
+        // International user and SessionM service is unavialable.
+        // Here you should hide mPoints integration such as portal buttons.
+    }
+}
+
 @end
