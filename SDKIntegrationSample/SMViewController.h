@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SessionM.h"
 #import "SMPortalButton.h"
-#import "SMActivityViewController.h"
+#import "SMCustomAchievementActivity.h"
 
 @interface SMViewController : UIViewController <SessionMDelegate, UIAlertViewDelegate> {
 }
@@ -19,6 +19,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *bigGreenButton;
 @property (nonatomic, weak) IBOutlet UIButton *bigBlueButton;
 @property (nonatomic, weak) IBOutlet UISwitch *memberSwitch;
+@property (nonatomic, strong) SMCustomAchievementActivity *customAchievementActivity;
 
 - (IBAction)redButtonAction:(id)sender;
 - (IBAction)purpleButtonAction:(id)sender;

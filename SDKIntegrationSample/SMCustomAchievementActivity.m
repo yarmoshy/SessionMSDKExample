@@ -12,9 +12,17 @@
 
 -(id)initWithAchievmentData:(SMAchievementData *)theData {
     if(self = [super initWithAchievmentData:theData]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:UIApplicationWillResignActiveNotification object:nil];
     }
     return self;
 }
+
+-(void)dealloc {
+    // Be sure to hide any custom achievement UI that may be present upon app going to background,
+    // as the acheivement will be invalid upon coming back to foreground. 
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
+}
+
 - (void)present {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:self.data.name message:self.data.message delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Claim", nil];
     
@@ -23,10 +31,10 @@
 }
 
 - (void)dismiss {
-    [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
+    [self.alertView dismissWithClickedButtonIndex:0 animated:NO];
 }
 
-// UIAlertViewDelegate
+#pragma mark - UIAlertViewDelegate
 
 - (void)didPresentAlertView:(UIAlertView *)alertView {
     [super notifyPresented];

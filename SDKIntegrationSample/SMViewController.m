@@ -84,8 +84,8 @@
     // we simple use a subclassed SMAchievementActivity which uses a UIAlertView,
     // but any custom view could be used, provided the notifyPresented and
     // notifyDismissed methods are called. See SMCustomAchievementActivity.m.
-    SMCustomAchievementActivity *customAchievementActivity = [[SMCustomAchievementActivity alloc] initWithAchievmentData:achievementData];
-    [customAchievementActivity present];
+    self.customAchievementActivity = [[SMCustomAchievementActivity alloc] initWithAchievmentData:achievementData];
+    [self.customAchievementActivity present];
 }
 
 // Switch shows example of how to toggle a user
@@ -132,6 +132,7 @@
 // Notifies about SessionM state transition.
 - (void)sessionM: (SessionM *)session didTransitionToState: (SessionMState)state {
     [self updateButton:state];
+//    NSLog(@"%u",state);
 }
 
 // Notifies that user info was updated. User info may be different from
