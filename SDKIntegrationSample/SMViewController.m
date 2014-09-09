@@ -140,4 +140,9 @@
     [self updateButton:[SessionM sharedInstance].sessionState];
 }
 
+// Refreshes UI after achievement activity dismiss.
+- (void)sessionM:(SessionM *)sessionM didDismissActivity:(SMActivity *)activity {
+    [self updateButton:[SessionM sharedInstance].sessionState];
+}
+
 @end
