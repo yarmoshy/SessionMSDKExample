@@ -19,6 +19,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *bigGreenButton;
 @property (nonatomic, weak) IBOutlet UIButton *bigBlueButton;
 @property (nonatomic, weak) IBOutlet UISwitch *memberSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *achievementCountLabel;
 @property (nonatomic, strong) SMCustomAchievementActivity *customAchievementActivity;
 
 - (IBAction)redButtonAction:(id)sender;

@@ -124,6 +124,16 @@
     } else {
         self.bigBlueButton.hidden = YES;
     }
+    
+    // Example of tracking number of unclaimedAchievements on user
+    SMUser *user = [SessionM sharedInstance].user;
+    NSString *badgeValue = user.unclaimedAchievementCount > 0 ? [NSString stringWithFormat:@"%lu", (unsigned long)user.unclaimedAchievementCount] : nil;
+    self.achievementCountLabel.text = badgeValue;
+    if ([badgeValue integerValue] == 0) {
+        self.achievementCountLabel.hidden = YES;
+    } else {
+        self.achievementCountLabel.hidden = NO;
+    }
 }
 
 
